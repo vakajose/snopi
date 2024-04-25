@@ -41,7 +41,7 @@ function OpenaiFetchAPI(text) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: "text-davinci-003",
+      model: "gpt-3.5-turbo-instruct",
       prompt: text,
       temperature: 0.5,
       max_tokens: 60,
@@ -50,10 +50,10 @@ function OpenaiFetchAPI(text) {
       presence_penalty: 0.0
     })
   }).then(response => {
-
     return response.json()
 
   }).then(data => {
+    console.log('Response: ',data)
 
     face.emit('message', { message: data["choices"][0].text });
     face.emit('talking', { talking: 'true' });
