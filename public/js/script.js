@@ -8,7 +8,7 @@ var face = io.connect(window.location.href + "face");
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
-recognition.lang = 'en-US';
+recognition.lang = 'es-ES';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 recognition.continuous = true;
@@ -73,6 +73,7 @@ function synthVoice(text, callback) {
   var synth = window.speechSynthesis;
   var msg = new SpeechSynthesisUtterance();
   msg.text = text;
+  msg.voice = speechSynthesis.getVoices()[5]
   synth.speak(msg);
   callback('ok');
   msg.addEventListener('end', (event) => {
